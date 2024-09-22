@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Form with Show Password</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Righteous', sans-serif;
+            color: #ff0000; /* Brighter red color */
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        video#background-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            filter: brightness(40%) contrast(120%);
+        }
+
+        .bravo-container {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1.5rem;
+            border-radius: 15px; /* Rounded edges */
+            width: 350px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.5s ease-in-out; /* Animation for container */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .bravo-navbar {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+            background-color: #000;
+        }
+
+        .bravo-nav-item {
+            color: #ff0000; /* Brighter red color */
+            padding: 0.5rem;
+            cursor: pointer;
+            position: relative;
+            width: 50%;
+            text-align: center;
+        }
+
+        .bravo-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #ff0000; /* Brighter red color */
+        }
+
+        .bravo-h1 {
+            color: #ff0000; /* Brighter red color */
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .bravo-label {
+            color: #ffffff;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .bravo-input {
+            width: calc(100% - 1rem);
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 4px;
+            background: #333;
+            color: #ffffff;
+        }
+
+        .bravo-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bravo-toggle-password {
+            cursor: pointer;
+            color: #ff0000; /* Brighter red color */
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+
+        .bravo-button {
+            background: #ff0000; /* Brighter red color */
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .bravo-button:hover {
+            background: #b30000; /* Darker shade on hover */
+        }
+
+        .bravo-login-link {
+            display: block;
+            margin-top: 1rem;
+            text-align: center;
+            color: #ff0000; /* Brighter red color */
+        }
+
+        .bravo-login-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop id="background-video">
+        <source src="https://motionbgs.com/media/3346/fantasy-samurai-kneeling.960x540.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="bravo-container">
+        <div class="bravo-navbar">
+            <div class="bravo-nav-item active" id="other-college-tab">Other College</div>
+            <div class="bravo-nav-item" id="nitpy-college-tab">NITPY College</div>
+        </div>
+
+        <div id="other-college-form">
+            <h1 class="bravo-h1">Other College</h1>
+            <div class="bravo-label" for="name">Name</div>
+            <input class="bravo-input" type="text" id="name" placeholder="Enter your name">
+
+            <div class="bravo-label" for="email">Email</div>
+            <input class="bravo-input" type="email" id="email" placeholder="Enter your email">
+
+            <div class="bravo-label" for="phone">Phone Number</div>
+            <input class="bravo-input" type="text" id="phone" placeholder="Enter your phone number">
+
+            <div class="bravo-label" for="college-name">College Name</div>
+            <input class="bravo-input" type="text" id="college-name" placeholder="Enter your college name">
+
+            <div class="bravo-label" for="password">Password</div>
+            <input class="bravo-input" type="password" id="password" placeholder="Enter your password">
+
+            <div class="bravo-label" for="confirm-password">Confirm Password</div>
+            <input class="bravo-input" type="password" id="confirm-password" placeholder="Confirm your password">
+
+            <div class="bravo-actions">
+                <button class="bravo-button" type="submit">Register</button>
+                <span class="bravo-toggle-password" onclick="togglePasswordVisibility()">Show Password</span>
+            </div>
+            <a href="login.html" class="bravo-login-link">Already registered? Login</a>
+        </div>
+
+        <div id="nitpy-college-form" style="display: none;">
+            <h1 class="bravo-h1">NITPY College</h1>
+            <div class="bravo-label" for="name2">Name</div>
+            <input class="bravo-input" type="text" id="name2" placeholder="Enter your name">
+
+            <div class="bravo-label" for="email2">Email</div>
+            <input class="bravo-input" type="email" id="email2" placeholder="Enter your email">
+
+            <div class="bravo-label" for="phone2">Phone Number</div>
+            <input class="bravo-input" type="text" id="phone2" placeholder="Enter your phone number">
+
+            <div class="bravo-label" for="roll-number">Roll Number</div>
+            <input class="bravo-input" type="text" id="roll-number" placeholder="Enter your roll number">
+
+            <div class="bravo-label" for="password2">Password</div>
+            <input class="bravo-input" type="password" id="password2" placeholder="Enter your password">
+
+            <div class="bravo-label" for="confirm-password2">Confirm Password</div>
+            <input class="bravo-input" type="password" id="confirm-password2" placeholder="Confirm your password">
+
+            <div class="bravo-actions">
+                <button class="bravo-button" type="submit">Register</button>
+                <span class="bravo-toggle-password" onclick="togglePasswordVisibility2()">Show Password</span>
+            </div>
+            <a href="login.html" class="bravo-login-link">Already registered? Login</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('other-college-tab').addEventListener('click', function() {
+            const otherCollegeForm = document.getElementById('other-college-form');
+            const nitpyCollegeForm = document.getElementById('nitpy-college-form');
+            
+            if (nitpyCollegeForm.style.display !== 'none') {
+                nitpyCollegeForm.style.animation = 'fadeOut 0.5s ease-in-out';
+                nitpyCollegeForm.addEventListener('animationend', () => {
+                    nitpyCollegeForm.style.display = 'none';
+                    otherCollegeForm.style.display = 'block';
+                    otherCollegeForm.style.animation = 'fadeIn 0.5s ease-in-out';
+                }, { once: true });
+            } else {
+                otherCollegeForm.style.display = 'block';
+            }
+
+            this.classList.add('active');
+            document.getElementById('nitpy-college-tab').classList.remove('active');
+        });
+
+        document.getElementById('nitpy-college-tab').addEventListener('click', function() {
+            const otherCollegeForm = document.getElementById('other-college-form');
+            const nitpyCollegeForm = document.getElementById('nitpy-college-form');
+
+            if (otherCollegeForm.style.display !== 'none') {
+                otherCollegeForm.style.animation = 'fadeOut 0.5s ease-in-out';
+                otherCollegeForm.addEventListener('animationend', () => {
+                    otherCollegeForm.style.display = 'none';
+                    nitpyCollegeForm.style.display = 'block';
+                    nitpyCollegeForm.style.animation = 'fadeIn 0.5s ease-in-out';
+                }, { once: true });
+            } else {
+                nitpyCollegeForm.style.display = 'block';
+            }
+
+            this.classList.add('active');
+            document.getElementById('other-college-tab').classList.remove('active');
+        });
+
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+            confirmPasswordInput.type = confirmPasswordInput.type === 'password' ? 'text' : 'password';
+            document.querySelector('.bravo-toggle-password').textContent = passwordInput.type === 'text' ? 'Hide Password' : 'Show Password';
+        }
+
+        function togglePasswordVisibility2() {
+            const passwordInput2 = document.getElementById('password2');
+            const confirmPasswordInput2 = document.getElementById('confirm-password2');
+            passwordInput2.type = passwordInput2.type === 'password' ? 'text' : 'password';
+            confirmPasswordInput2.type = confirmPasswordInput2.type === 'password' ? 'text' : 'password';
+            document.querySelectorAll('.bravo-toggle-password')[1].textContent = passwordInput2.type === 'text' ? 'Hide Password' : 'Show Password';
+        }
+    </script>
+</body>
+</html>

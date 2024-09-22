@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Righteous', sans-serif;
+            color: #ff0000; /* Brighter red color */
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        video#background-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            filter: brightness(40%) contrast(120%);
+        }
+
+        .bravo-container {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1.5rem;
+            border-radius: 25px; /* More rounded edges */
+            width: 350px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.5s ease-in-out; /* Quicker fade animation */
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .bravo-h1 {
+            color: #ff0000; /* Brighter red color */
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .bravo-label {
+            color: #ffffff;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .bravo-input {
+            width: calc(100% - 1rem);
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 4px;
+            background: #333;
+            color: #ffffff;
+        }
+
+        .bravo-button {
+            background: #ff0000; /* Brighter red color */
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .bravo-button:hover {
+            background: #b30000; /* Darker shade on hover */
+        }
+
+        .bravo-login-link {
+            display: block;
+            margin-top: 1rem;
+            text-align: center;
+            color: #ff0000; /* Brighter red color */
+        }
+
+        .bravo-login-link:hover {
+            text-decoration: underline;
+        }
+
+        .bravo-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .bravo-toggle-password {
+            cursor: pointer;
+            color: #ff0000; /* Brighter red color */
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop id="background-video">
+        <source src="https://motionbgs.com/media/1535/samurai-sekiro-near-trees.960x540.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="bravo-container">
+        <h1 class="bravo-h1">Login</h1>
+        <div class="bravo-label">Email</div>
+        <input type="email" class="bravo-input" id="email" placeholder="Enter your email">
+        
+        <div class="bravo-label">Password</div>
+        <input type="password" class="bravo-input" id="password" placeholder="Enter your password">
+
+        <div class="bravo-actions">
+            <button type="submit" class="bravo-button">Login</button>
+            <span class="bravo-toggle-password" onclick="togglePasswordVisibility()">Show Password</span>
+        </div>
+        
+        <a href="signup.html" class="bravo-login-link">Not registered? Sign Up</a>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById('password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                document.querySelector('.bravo-toggle-password').textContent = 'Hide Password';
+            } else {
+                passwordField.type = 'password';
+                document.querySelector('.bravo-toggle-password').textContent = 'Show Password';
+            }
+        }
+    </script>
+</body>
+</html>
